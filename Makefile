@@ -19,7 +19,7 @@ kernel:
 $(ISO_IMAGE): limine kernel
 	rm -rf iso_root
 	mkdir -p iso_root
-	cp $(KERNEL) limine.cfg limine/limine.sys limine/limine-cd.bin limine/limine-eltorito-efi.bin iso_root/
+	cp $(KERNEL) limine.cfg limine/limine.sys limine/limine-cd.bin limine/limine-eltorito-efi.bin font.psf iso_root/
 	xorriso -as mkisofs -b limine-cd.bin \
 		-no-emul-boot -boot-load-size 4 -boot-info-table \
 		--efi-boot limine-eltorito-efi.bin \
