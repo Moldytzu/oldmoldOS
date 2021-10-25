@@ -16,9 +16,11 @@ static struct stivale2_header stivale_hdr = {
 
 //entry point
 void _start(struct stivale2_struct *stivale2_struct) {
-    frameBuffer = stivale2_get_tag(stivale2_struct,STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
-    for(int i = 0;i<=0x10000;i++)
-        *(uint8_t*)(frameBuffer->framebuffer_addr + i) = 0xFF;
+    struct stivale2_struct_tag_framebuffer* frameBuffer = stivale2_get_tag(stivale2_struct,STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
+    framebufferInit(frameBuffer);
+    for(int x = 0;x<framebufferGet()->width;x++)
+        for(int y = 0;y<framebufferGet()->height;y++)
+            framebufferPutPixel(x,y,0xFF00FF);
 
     while(1) asm volatile ("hlt");
 }
