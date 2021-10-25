@@ -2,7 +2,7 @@
 struct frameBuffer fb;
 
 void framebufferInit(struct stivale2_struct_tag_framebuffer* fr) {
-    fb.base = fr->framebuffer_addr;
+    fb.base = (void*)fr->framebuffer_addr;
     fb.height = fr->framebuffer_height;
     fb.width = fr->framebuffer_width;
 }

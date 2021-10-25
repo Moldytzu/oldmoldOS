@@ -5,7 +5,7 @@
 #include <stddef.h>
 
 //sample tag
-static struct stivale2_header_tag_framebuffer s_tag0 = {
+static struct stivale2_header_tag_framebuffer sampleTag = {
     .tag = {
         .identifier = STIVALE2_HEADER_TAG_FRAMEBUFFER_ID,
         .next = 0

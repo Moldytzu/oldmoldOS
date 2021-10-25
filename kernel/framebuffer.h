@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <bootloaderif.h>
 
-typedef struct frameBuffer {
+struct frameBuffer {
     void* base;
     uint16_t width;
     uint16_t height;
