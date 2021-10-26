@@ -2,11 +2,17 @@
 struct frameBuffer fb;
 struct PSFFont* fnt;
 
+uint16_t cursorX;
+uint16_t cursorY;
+
 void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2module* module) {
     fb.base = (void*)fr->framebuffer_addr;
     fb.height = fr->framebuffer_height;
     fb.width = fr->framebuffer_width;
     fnt = module->base;
+
+    cursorX = 0;
+    cursorY = 0;
 }
 
 void framebufferPutPixel(uint16_t x, uint16_t y, uint32_t color) {
@@ -30,15 +36,13 @@ struct frameBuffer* framebufferGet() {
     return &fb;
 }
 
-/*
-    char* fontPtr = m.base+sizeof(struct PSFHeader) + ('A' * fontHeader->numglyph);
-    for (unsigned long y = 0; y < 0 + 16; y++){
-        for (unsigned long x = 0; x < 0+8; x++){
-            if ((*fontPtr & (0b10000000 >> (x - 0))) > 0){
-                    framebufferPutPixel(x,y,0xFFFFFF);
-                }
-
+void framebufferPlotString(uint32_t color, const char* chr) {
+    for(int i = 0;chr[i] != 0;i++) {
+        framebufferPlotCharacter(cursorX,cursorY,color,chr[i]);
+        cursorX+=10;
+        if(cursorX+10 >= fb.width) {
+            cursorX = 0;
+            cursorY += 18;
         }
-        fontPtr++;
     }
-*/
+}
