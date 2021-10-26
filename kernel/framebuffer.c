@@ -40,6 +40,11 @@ struct frameBuffer* framebufferGet() {
 
 void framebufferPlotString(const char* chr) {
     for(int i = 0;chr[i] != 0;i++) {
+        if(chr[i] == '\n') {
+            cursorX = 0;
+            cursorY += 18;
+            continue;
+        }
         framebufferPlotCharacter(cursorX,cursorY,cursorColor,chr[i]);
         cursorX+=10;
         if(cursorX+10 >= fb.width) {

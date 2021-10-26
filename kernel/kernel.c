@@ -25,9 +25,13 @@ void kernelInit(struct stivale2_struct *stivale2_struct) {
 //entry point
 void _start(struct stivale2_struct *stivale2_struct) {
     kernelInit(stivale2_struct);
-    framebufferClear(0xFF0000);
-    char tmp[10];
-    framebufferPlotString(itoa(1054,tmp,10));
+    framebufferClear(0x000000);
+    char tmp[64];
+    framebufferPlotString("Current screen resolution is ");
+    framebufferPlotString(itoa(framebufferGet()->width,tmp,10));
+    framebufferPlotString("x");
+    framebufferPlotString(itoa(framebufferGet()->height,tmp,10));
+    framebufferPlotString("\nmoldOS!");
 
     while(1) asm volatile ("hlt");
 }
