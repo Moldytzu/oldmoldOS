@@ -10,6 +10,7 @@ void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2
     fb.base = (void*)fr->framebuffer_addr;
     fb.height = fr->framebuffer_height;
     fb.width = fr->framebuffer_width;
+    fb.pps = fr->framebuffer_pitch;
     fnt = module->base;
 
     cursorX = 0;
@@ -18,7 +19,7 @@ void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2
 }
 
 void framebufferPutPixel(uint16_t x, uint16_t y, uint32_t color) {
-    ((uint32_t*)fb.base)[y * fb.width + x] = color;
+    *(uint32_t*)((x*4 + (fb.pps*y)) + (uint64_t)fb.base) = color;
 }
 
 void framebufferPlotCharacter(uint16_t xOff, uint16_t yOff, uint32_t color, char chr) {

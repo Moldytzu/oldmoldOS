@@ -7,6 +7,7 @@ struct frameBuffer {
     void* base;
     uint16_t width;
     uint16_t height;
+    uint16_t pps; //pixels per scanline or pitch
 };
 
 struct PSFHeader {
