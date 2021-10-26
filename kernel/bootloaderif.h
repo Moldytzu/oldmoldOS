@@ -12,7 +12,7 @@ static struct stivale2_header_tag_framebuffer sampleTag = {
     },
 };
 
-struct module {
+struct stivale2module {
     void* base;
 	size_t size;
 };
@@ -23,4 +23,4 @@ void* stivale2_get_tag(struct stivale2_struct* stivale2_struct, uint64_t id);
 
 //get module
 
-void stivale2_get_module(struct stivale2_struct* stivale2_struct, struct module* mod, const char* sig);
+void stivale2_get_module(struct stivale2_struct* stivale2_struct, struct stivale2module* mod, const char* sig);
