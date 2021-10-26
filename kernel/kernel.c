@@ -25,6 +25,11 @@ void kernelInit(struct stivale2_struct *stivale2_struct) {
 void _start(struct stivale2_struct *stivale2_struct) {
     kernelInit(stivale2_struct);
 
+    framebufferSetCursor(600,200);
+    struct Point p = framebufferGetCursor();
+    framebufferSetCursor(0,0);
+    framebufferSetCursor(p.x,p.y);
+    
     framebufferPlotString(0xFFFFFF,"moldOS!");
 
     while(1) asm volatile ("hlt");

@@ -46,3 +46,15 @@ void framebufferPlotString(uint32_t color, const char* chr) {
         }
     }
 }
+
+struct Point framebufferGetCursor() {
+    struct Point p;
+    p.x = cursorX;
+    p.y = cursorY;
+    return p;
+}
+
+void framebufferSetCursor(uint16_t x, uint16_t y) {
+    cursorX = x;
+    cursorY = y;
+}

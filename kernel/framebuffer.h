@@ -20,8 +20,16 @@ struct PSFFont {
     char glyphs; 
 };
 
+struct Point {
+    uint16_t x;
+    uint16_t y;
+};
+
 void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2module* module);
 void framebufferPutPixel(uint16_t x, uint16_t y, uint32_t color);
 void framebufferPlotCharacter(uint16_t xOff, uint16_t yOff, uint32_t color, char chr);
 void framebufferPlotString(uint32_t color, const char* chr);
+struct Point framebufferGetCursor();
+void framebufferSetCursor(uint16_t x, uint16_t y);
+
 struct frameBuffer* framebufferGet();
