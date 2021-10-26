@@ -62,3 +62,9 @@ void framebufferSetCursor(uint16_t x, uint16_t y, uint32_t color) {
     cursorY = y;
     cursorColor = color;
 }
+
+void framebufferClear(uint32_t color) {
+    for(int y = 0;y<fb.height;y++)
+        for(int x = 0;x<fb.width;x++)
+            framebufferPutPixel(x,y,color);
+}

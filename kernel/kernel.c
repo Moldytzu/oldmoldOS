@@ -14,6 +14,7 @@ static struct stivale2_header stivale_hdr = {
     .tags = (uintptr_t)&sampleTag //start of the linked list
 };
 
+//kernel init
 void kernelInit(struct stivale2_struct *stivale2_struct) {
     struct stivale2_struct_tag_framebuffer* frameBuffer = stivale2_get_tag(stivale2_struct,STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
     struct stivale2module m;
@@ -24,12 +25,7 @@ void kernelInit(struct stivale2_struct *stivale2_struct) {
 //entry point
 void _start(struct stivale2_struct *stivale2_struct) {
     kernelInit(stivale2_struct);
-
-    framebufferSetCursor(600,200,0xFF00FF);
-    struct Cursor p = framebufferGetCursor();
-    framebufferSetCursor(0,0,0);
-    framebufferSetCursor(p.x,p.y,p.color);
-    
+    framebufferClear(0xFF0000);
     framebufferPlotString("moldOS!");
 
     while(1) asm volatile ("hlt");

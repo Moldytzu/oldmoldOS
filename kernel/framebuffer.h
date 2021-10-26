@@ -32,5 +32,6 @@ void framebufferPlotCharacter(uint16_t xOff, uint16_t yOff, uint32_t color, char
 void framebufferPlotString(const char* chr);
 struct Cursor framebufferGetCursor();
 void framebufferSetCursor(uint16_t x, uint16_t y, uint32_t color);
+void framebufferClear(uint32_t color);
 
 struct frameBuffer* framebufferGet();
