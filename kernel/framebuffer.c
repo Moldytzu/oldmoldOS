@@ -4,6 +4,7 @@ struct PSFFont* fnt;
 
 uint16_t cursorX;
 uint16_t cursorY;
+uint32_t cursorColor;
 
 void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2module* module) {
     fb.base = (void*)fr->framebuffer_addr;
@@ -13,6 +14,7 @@ void framebufferInit(struct stivale2_struct_tag_framebuffer* fr, struct stivale2
 
     cursorX = 0;
     cursorY = 0;
+    cursorColor = 0xFFFFFF;
 }
 
 void framebufferPutPixel(uint16_t x, uint16_t y, uint32_t color) {
@@ -36,9 +38,9 @@ struct frameBuffer* framebufferGet() {
     return &fb;
 }
 
-void framebufferPlotString(uint32_t color, const char* chr) {
+void framebufferPlotString(const char* chr) {
     for(int i = 0;chr[i] != 0;i++) {
-        framebufferPlotCharacter(cursorX,cursorY,color,chr[i]);
+        framebufferPlotCharacter(cursorX,cursorY,cursorColor,chr[i]);
         cursorX+=10;
         if(cursorX+10 >= fb.width) {
             cursorX = 0;
@@ -47,14 +49,16 @@ void framebufferPlotString(uint32_t color, const char* chr) {
     }
 }
 
-struct Point framebufferGetCursor() {
-    struct Point p;
+struct Cursor framebufferGetCursor() {
+    struct Cursor p;
     p.x = cursorX;
     p.y = cursorY;
+    p.color = cursorColor;
     return p;
 }
 
-void framebufferSetCursor(uint16_t x, uint16_t y) {
+void framebufferSetCursor(uint16_t x, uint16_t y, uint32_t color) {
     cursorX = x;
     cursorY = y;
+    cursorColor = color;
 }
