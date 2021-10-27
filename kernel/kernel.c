@@ -1,6 +1,7 @@
 #include <bootloaderif.h> //bootloader interface
 #include <utils.h> //utilities
 #include <framebuffer.h> //framebuffer
+#include <gdt.h>
 
 //Kernel stack (16 mb should be enough for now)
 static uint8_t kernelStack[0x1000000];
