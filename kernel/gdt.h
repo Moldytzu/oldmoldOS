@@ -14,7 +14,7 @@ struct GDTSegment {
     unsigned accessDC:1;
     unsigned accessEX:1;
     unsigned accessS:1;
-    unsigned accessPrivl:1;
+    unsigned accessPrivl:2;
     unsigned accessPr:1;
     unsigned limit1:4;
     unsigned flagAvailable:1;
@@ -23,3 +23,14 @@ struct GDTSegment {
     unsigned flagGranularity:1;
     uint8_t base2;
 };
+
+struct GDT {
+    struct GDTSegment kNull; 
+    struct GDTSegment kCode; 
+    struct GDTSegment kData; 
+    struct GDTSegment uNull; 
+    struct GDTSegment uCode; 
+    struct GDTSegment uData; 
+};
+
+extern struct GDT BasicGDT;
