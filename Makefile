@@ -27,3 +27,8 @@ $(ISO_IMAGE): limine kernel
 		iso_root -o $(ISO_IMAGE)
 	limine/limine-install $(ISO_IMAGE)
 	rm -rf iso_root
+
+.PHONY: prepare
+prepare:
+	@echo "If you get an error, run this as root"
+	@apt install build-essential xorriso curl -y

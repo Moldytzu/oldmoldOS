@@ -2,7 +2,7 @@
 #include <utils.h> //utilities
 #include <framebuffer.h> //framebuffer
 
-//Kernel stack (4 mb should be enough for now)
+//Kernel stack (16 mb should be enough for now)
 static uint8_t kernelStack[0x1000000];
 
 //header
