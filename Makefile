@@ -31,4 +31,4 @@ $(ISO_IMAGE): limine kernel
 .PHONY: prepare
 prepare:
 	@echo "If you get an error, run this as root"
-	@apt install build-essential xorriso curl -y
+	@apt install build-essential xorriso curl nasm -y

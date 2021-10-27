@@ -2,9 +2,11 @@ KERNEL = mold.kernel
 
 CC ?= gcc
 LD ?= ld
+ASM ?= nasm
 
-CFLAGS  ?= -Wall -Wextra -pipe
+CFLAGS  ?=
 LDFLAGS ?=
+ASMFLAGS ?= 
 
 INTERNALLDFLAGS :=         \
 	-Tlinker.ld            \
@@ -21,9 +23,15 @@ INTERNALCFLAGS :=        \
 	-fno-stack-protector \
 	-fpie                \
 
+INTERNALASMFLAGS :=		 \
+	-felf64				 \
+
 CFILES      := $(shell find ./ -type f -name '*.c')
+ASMFILES    := $(shell find ./ -type f -name '*.asm')
 OBJ         := $(CFILES:.c=.o)
+OBJ			+= $(ASMFILES:.asm=.o_asm)
 HEADER_DEPS := $(CFILES:.c=.d)
+HEADER_DEPS += $(ASMFILES:.asm=.d)
 
 all: $(KERNEL)
 
@@ -38,3 +46,6 @@ $(KERNEL): $(OBJ)
 
 %.o: %.c header
 	$(CC) $(CFLAGS) $(INTERNALCFLAGS) -c $< -o $@
+
+%.o_asm: %.asm
+	$(ASM) $< $(ASMFLAGS) $(INTERNALASMFLAGS) -o $@
