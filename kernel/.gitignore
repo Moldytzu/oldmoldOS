@@ -1,2 +1,7 @@
 stivale2.h
 mold.kernel
+
+# don't push gdt yet
+gdt.asm_
+gdt.c_
+gdt.h_

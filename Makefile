@@ -6,7 +6,8 @@ all: $(ISO_IMAGE)
 
 .PHONY: run
 run: $(ISO_IMAGE)
-	qemu-system-x86_64 -M q35 -m 2G -cdrom $(ISO_IMAGE)
+	qemu-system-x86_64 -M q35 -m 2G -cdrom $(ISO_IMAGE) -monitor /dev/stdout -no-reboot -no-shutdown -serial /dev/stdout
+	stty cooked
 
 limine:
 	git clone https://github.com/limine-bootloader/limine.git --branch=v2.0-branch-binary --depth=1

@@ -40,3 +40,13 @@ char* itoa(uint64_t value, char* result, int base) {
     }
     return result;
 }
+
+void memset(void *s, int c,  unsigned int len)
+{
+    unsigned char* p=s;
+    while(len--)
+    {
+        *p++ = (unsigned char)c;
+    }
+    return s;
+}
